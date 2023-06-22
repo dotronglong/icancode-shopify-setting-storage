@@ -1,0 +1,42 @@
+{
+  "name": "@icancode/shopify-setting-storage",
+  "version": "1.0.0",
+  "description": "Shopify setting storage",
+  "main": "main",
+  "scripts": {
+    "test": "tsc && mocha",
+    "lint": "eslint lib/**/*.ts",
+    "clean": "git clean -fx",
+    "prebuild": "yarn lint --fix",
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://github.com:dotronglong/icancode-shopify-setting-storage.git"
+  },
+  "keywords": [
+    "icancode",
+    "shopify",
+    "session storage",
+    "file"
+  ],
+  "author": "Long Do <dotronglong@live.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dotronglong/icancode-shopify-setting-storage/issues"
+  },
+  "homepage": "https://github.com/dotronglong/icancode-shopify-setting-storage#readme",
+  "devDependencies": {
+    "@types/node": "^18.15.11",
+    "@typescript-eslint/eslint-plugin": "^5.58.0",
+    "@typescript-eslint/parser": "^5.58.0",
+    "eslint": "^8.38.0",
+    "eslint-config-google": "^0.14.0",
+    "mocha": "^10.2.0",
+    "typescript": "^5.0.4"
+  },
+  "dependencies": {
+    "@icancode/base": "^1.0.2",
+    "aws-sdk": "^2.1402.0"
+  }
+}
