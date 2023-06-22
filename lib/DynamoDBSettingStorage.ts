@@ -1,10 +1,16 @@
 import {Getter, HashMap} from '@icancode/base';
 import SettingStorage from './SettingStorage';
 import MapGetter from './MapGetter';
-import {DocumentClient} from 'aws-sdk/clients/dynamodb';
+import {DynamoDB, DynamoDBClientConfig} from '@aws-sdk/client-dynamodb';
+import {
+  DynamoDBDocumentClient,
+  GetCommand,
+  PutCommand,
+} from '@aws-sdk/lib-dynamodb';
 
 export interface DynamoDBSettingStorageOptions {
   tableName: string;
+  config?: DynamoDBClientConfig;
 }
 
 const defaultDynamoDBSettingStorageOptions: DynamoDBSettingStorageOptions = {
@@ -18,7 +24,7 @@ const defaultDynamoDBSettingStorageOptions: DynamoDBSettingStorageOptions = {
  */
 export class DynamoDBSettingStorage implements SettingStorage {
   private options: DynamoDBSettingStorageOptions;
-  private client: DocumentClient;
+  private client: DynamoDBDocumentClient;
 
   /**
    * Constructor
@@ -26,7 +32,9 @@ export class DynamoDBSettingStorage implements SettingStorage {
    */
   constructor(options?: DynamoDBSettingStorageOptions) {
     this.options = {...defaultDynamoDBSettingStorageOptions, ...options};
-    this.client = new DocumentClient();
+    this.client = DynamoDBDocumentClient.from(
+        new DynamoDB({...this.options.config}),
+    );
   }
 
   /**
@@ -36,21 +44,14 @@ export class DynamoDBSettingStorage implements SettingStorage {
    * @return {Promise<Getter>}
    */
   getSettings(shop: string, app: string): Promise<Getter> {
-    return new Promise((resolve, reject) => {
+    return new Promise(async (resolve, reject) => {
       try {
-        this.client.get({
+        const command = new GetCommand({
           TableName: this.options.tableName,
-          Key: {
-            shop,
-            app,
-          },
-        }, function(err, data) {
-          if (err) {
-            reject(err);
-          } else {
-            resolve(new MapGetter(data.Item || {}));
-          }
+          Key: {shop, app},
         });
+        const response = await this.client.send(command);
+        resolve(new MapGetter(response.Item || {}));
       } catch (e) {
         reject(e);
       }
@@ -65,18 +66,14 @@ export class DynamoDBSettingStorage implements SettingStorage {
    * @return {Promise<void>}
    */
   setSettings(shop: string, app: string, settings: HashMap): Promise<void> {
-    return new Promise((resolve, reject) => {
+    return new Promise(async (resolve, reject) => {
       try {
-        this.client.put({
+        const command = new PutCommand({
           TableName: this.options.tableName,
           Item: {...settings, ...{shop, app}},
-        }, function(err) {
-          if (err) {
-            reject(err);
-          } else {
-            resolve();
-          }
         });
+        await this.client.send(command);
+        resolve();
       } catch (e) {
         reject(e);
       }

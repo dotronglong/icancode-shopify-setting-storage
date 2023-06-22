@@ -1,6 +1,6 @@
 {
   "name": "@icancode/shopify-setting-storage",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Shopify setting storage",
   "main": "main",
   "scripts": {
@@ -36,7 +36,8 @@
     "typescript": "^5.0.4"
   },
   "dependencies": {
-    "@icancode/base": "^1.0.2",
-    "aws-sdk": "^2.1402.0"
+    "@aws-sdk/client-dynamodb": "^3.357.0",
+    "@aws-sdk/lib-dynamodb": "^3.357.0",
+    "@icancode/base": "^1.0.2"
   }
 }
