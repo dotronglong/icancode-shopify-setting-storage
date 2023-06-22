@@ -7,6 +7,10 @@ export default class MapGetter implements Getter {
     this.data = data;
   }
 
+  all(): HashMap {
+    return this.data;
+  }
+
   get(name: string) {
     return this.data[name];
   }
