@@ -18,7 +18,7 @@ const defaultDynamoDBSettingStorageOptions: DynamoDBSettingStorageOptions = {
 };
 
 /**
- * FileSettingStorage
+ * DynamoDBSettingStorage
  *
  * Table should have shop as PK and app as SK
  */
