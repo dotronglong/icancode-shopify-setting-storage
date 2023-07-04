@@ -22,4 +22,16 @@ describe('FileSettingStorage', function() {
     assert.equal(settings.getBoolean("isEnabled"), false);
     assert.equal(settings.getNumber("maxWords"), 2);
   });
+
+  it('should delete settings', async function() {
+    const settingStorage = new FileSettingStorage();
+    await settingStorage.setSettings('my-shop', '4444', {
+      isEnabled: false,
+      maxWords: 2
+    });
+    await settingStorage.deleteSettings('my-shop', '4444');
+    const settings = await settingStorage.getSettings('my-shop', '4444');
+    assert.notEqual(settings, undefined);
+    assert.equal(settings.getBoolean('isEnabled'), undefined);
+  });
 });

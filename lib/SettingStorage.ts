@@ -20,4 +20,12 @@ export default interface SettingStorage {
    * @returns {Promise<void>}
    */
   setSettings(shop: string, app: string, settings: HashMap): Promise<void>;
+
+  /**
+   * Delete shop's settings by app
+   * @param {string} shop shop's id
+   * @param {string} app app's id
+   * @returns {Promise<void>}
+   */
+  deleteSettings(shop: string, app: string): Promise<void>;
 }

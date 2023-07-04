@@ -83,4 +83,24 @@ export class FileSettingStorage implements SettingStorage {
       }
     });
   }
+
+  /**
+   * Delete shop's settings by app
+   * @param {string} shop shop's id
+   * @param {string} app app's id
+   * @returns {Promise<void>}
+   */
+  deleteSettings(shop: string, app: string): Promise<void> {
+    return new Promise((resolve, reject) => {
+      try {
+        const filePath = join(this.directorySetting, `${shop}-${app}.json`);
+        if (fs.existsSync(filePath)) {
+          fs.unlinkSync(filePath);
+        }
+        resolve();
+      } catch (e) {
+        reject(e);
+      }
+    });
+  }
 }

@@ -6,6 +6,7 @@ import {
   DynamoDBDocumentClient,
   GetCommand,
   PutCommand,
+  DeleteCommand
 } from '@aws-sdk/lib-dynamodb';
 
 export interface DynamoDBSettingStorageOptions {
@@ -71,6 +72,27 @@ export class DynamoDBSettingStorage implements SettingStorage {
         const command = new PutCommand({
           TableName: this.options.tableName,
           Item: {...settings, ...{shop, app}},
+        });
+        await this.client.send(command);
+        resolve();
+      } catch (e) {
+        reject(e);
+      }
+    });
+  }
+
+  /**
+   * Delete shop's settings by app
+   * @param {string} shop shop's id
+   * @param {string} app app's id
+   * @returns {Promise<void>}
+   */
+  deleteSettings(shop: string, app: string): Promise<void> {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const command = new DeleteCommand({
+          TableName: this.options.tableName,
+          Key: {shop, app},
         });
         await this.client.send(command);
         resolve();
