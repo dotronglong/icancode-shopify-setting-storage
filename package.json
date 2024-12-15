@@ -38,6 +38,6 @@
   "dependencies": {
     "@aws-sdk/client-dynamodb": "^3.357.0",
     "@aws-sdk/lib-dynamodb": "^3.357.0",
-    "@icancode/base": "^1.0.2"
+    "@icancode/base": "^1.1.8"
   }
 }

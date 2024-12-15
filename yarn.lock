@@ -836,10 +836,10 @@
   resolved "https://registry.yarnpkg.com/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz#b520529ec21d8e5945a1851dfd1c32e94e39ff45"
   integrity sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==
 
-"@icancode/base@^1.0.2":
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/@icancode/base/-/base-1.0.3.tgz#fe0b7272a67202371469cfa8e0b1e8cd69066aa8"
-  integrity sha512-k9OGHC1zEYh8CeHNMwatcm9v5tR69hu6CIWCBit6D3klriCzSw+RoXJ/d2mILbLR5lEL/AKxZr1SGxFDHD4bgA==
+"@icancode/base@^1.1.8":
+  version "1.1.8"
+  resolved "https://registry.yarnpkg.com/@icancode/base/-/base-1.1.8.tgz#7be3b86988c21774a94f33f994700b1fe199e344"
+  integrity sha512-lqqfaB6UCtizbCV3tlcbgCG50B5Kb/gfrfhqwuiKccCrVsLZ5jF4dHCQ4wy6tGTVhgi/SnsQsaXiVMfGZxZLsg==
 
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"
