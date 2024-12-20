@@ -1,6 +1,6 @@
 {
   "name": "@icancode/shopify-setting-storage",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Shopify setting storage",
   "main": "main",
   "scripts": {
