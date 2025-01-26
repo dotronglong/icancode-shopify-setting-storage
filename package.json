@@ -38,7 +38,7 @@
   },
   "dependencies": {
     "@aws-sdk/client-dynamodb": "^3.670.0",
-    "@aws-sdk/lib-dynamodb": "^3.670.0",
+    "@aws-sdk/lib-dynamodb": "^3.721.0",
     "@icancode/base": "^1.1.0"
   },
   "resolutions": {
